@@ -19,7 +19,7 @@
 (function () {
   "use strict";
 
-  var GH_USER = "neftaligarcialopez29";
+  var GH_USER = "neffyG";
 
   var screenEl = document.getElementById("screen");
   var inputEl = document.getElementById("cmd");
@@ -38,27 +38,34 @@
      The terminal can `open` any of these and it'll pull the live README. */
   var PROJECTS = {
     vulnscan: {
-      repo: "vulnscan-pro",
+      repo: "VulnScan-Pro",
       title: "VulnScan Pro",
+      date: "Jun 2025",
       blurb: "Automated vulnerability scanner. Wraps nmap, matches service " +
              "versions against the NVD CVE feed, generates HTML reports. Dockerized."
     },
     cybershield: {
-      repo: "cybershield-firewall",
+      repo: "CyberShield-Firewall",
       title: "CyberShield Firewall",
+      date: "Feb 2025",
       blurb: "Stateful packet filter on Linux NFQUEUE. Connection tracking, a " +
              "token-bucket rate limiter for floods, SQLite logging, Flask dashboard."
     },
     honeywatch: {
-      repo: "honey-watch",
+      repo: "HoneyWatch",
       title: "Honey Watch Intrusion Lab",
+      date: "Dec 2024",
       blurb: "Cowrie + Dionaea honeypots feeding an ELK stack. Captures real " +
              "attacks, geolocates sources, summarizes payloads from the raw logs."
     },
     edccoin: {
-      repo: "edc-coin",
-      title: "EDC Coin",
-      blurb: "My earlier project. Pulled in live via the GitHub README below."
+      owner: "jaimani11",
+      repo: "Endless-Moments-LLC---An-AI-Powered-Universal-Loyalty-Rewards-Altcoin",
+      title: "EverydayCoin (EDC)",
+      date: "May 2026",
+      blurb: "AI-powered blockchain rewards platform. Solidity smart contracts, " +
+             "FastAPI, React, with ML fraud detection and OCR receipt validation, " +
+             "deployed on the Polygon testnet. My senior capstone (team repo)."
     }
   };
 
@@ -108,10 +115,14 @@
       out("  projects        list my projects");
       out("  open <name>     open a project (loads its live README from GitHub)");
       out("                  names: vulnscan, cybershield, honeywatch, edccoin");
+      out("  experience      my work history");
+      out("  education       degrees, coursework, awards");
+      out("  skills          languages, security, cloud, tools");
       out("  repos           list my public GitHub repositories (live)");
-      out("  resume          quick resume summary");
+      out("  resume          one-screen resume summary");
       out("  contact         how to reach me");
       out("  github          open my GitHub profile");
+      out("  linkedin        open my LinkedIn");
       out("  theme <c>       switch phosphor color: green or amber");
       out("  clear           clear the screen");
       out("  banner          reprint the banner");
@@ -134,7 +145,7 @@
       out("");
       Object.keys(PROJECTS).forEach(function (k) {
         var p = PROJECTS[k];
-        out("  " + pad(k, 13) + p.title);
+        out("  " + pad(k, 13) + p.title + (p.date ? "   (" + p.date + ")" : ""));
         out("  " + pad("", 13) + p.blurb, "dim");
         out("");
       });
@@ -150,12 +161,13 @@
         return;
       }
       var p = PROJECTS[name];
+      var owner = p.owner || GH_USER;   // EDC lives under a teammate's account
       out("");
-      out("=== " + p.title + " ===");
+      out("=== " + p.title + " ===" + (p.date ? "   " + p.date : ""));
       out(p.blurb, "dim");
       out("");
-      out("loading README from github.com/" + GH_USER + "/" + p.repo + " ...", "dim");
-      loadReadme(p.repo);
+      out("loading README from github.com/" + owner + "/" + p.repo + " ...", "dim");
+      loadReadme(owner, p.repo);
     },
 
     repos: function () {
@@ -164,19 +176,95 @@
     },
 
     resume: function () {
-      out("Neftali Garcia Lopez");
-      out("Computer Science, Arizona State University (Software Engineering)");
+      out("Neftali Garcia Lopez  //  Phoenix, AZ");
       out("");
-      out("Focus: application + network security, detection, secure tooling.");
-      out("Selected projects: VulnScan Pro, CyberShield Firewall, Honey Watch.");
+      out("B.S. Computer Science (Software Engineering), Arizona State, May 2026");
+      out("  then M.S. Cybersecurity, Arizona State, starting Aug 2026.");
       out("");
-      out("For the full resume, reach out via `contact`.");
+      out("I work in IT and security day to day and build security tools on the");
+      out("side to learn the internals. Focus areas: network and application");
+      out("security, threat detection, endpoint hardening, automation.");
+      out("");
+      out("Dig deeper with: `experience`, `education`, `skills`, `projects`.");
+      out("Reach me with `contact`.");
+    },
+
+    experience: function () {
+      out("work experience:");
+      out("");
+      out("  Technical Assistant, Hospice of the Valley        Jul 2024 - present");
+      out("    Phoenix, AZ");
+      out("    - Troubleshoot software and device issues for clinical staff and");
+      out("      keep systems up.");
+      out("    - Support endpoint security updates and HIPAA-aligned tuning");
+      out("      across the network.");
+      out("");
+      out("  IT Intern, Mission Healthcare                     Mar 2025 - Nov 2025");
+      out("    Phoenix, AZ");
+      out("    - Managed Azure and M365 for 150+ users, enforcing access");
+      out("      control and policy compliance.");
+      out("    - Automated diagnostics and patch management in PowerShell, cut");
+      out("      downtime by about 20%.");
+      out("    - Ran network security and performance analysis with Cisco Meraki");
+      out("      and Wireshark.");
+      out("    - Hardened endpoints along Zero-Trust lines across multiple OSes.");
+      out("");
+      out("  Instructional Aide, Arizona State University      Aug 2023 - May 2024");
+      out("    Tempe, AZ");
+      out("    - Guided 80+ students through C++ and Python labs: debugging,");
+      out("      algorithms, secure coding.");
+      out("    - Built grading automation scripts for the teaching staff.");
+    },
+
+    work: function () { COMMANDS.experience(); },
+
+    education: function () {
+      out("education:");
+      out("");
+      out("  M.S. Cybersecurity, Arizona State University   Aug 2026 - exp. 2028");
+      out("  B.S. Computer Science (Software Engineering)   May 2026   GPA 3.72");
+      out("");
+      out("  coursework: Computer Network Security, Operating Systems, Data");
+      out("    Structures & Algorithms, Software QA & Testing, OO Analysis & Design.");
+      out("");
+      out("  awards: Dean's List (multiple semesters), SHPE National Convention");
+      out("    Delegate, Evidence-Based Pitch Deck Finalist, Technical Assistant");
+      out("    Scholar at Mission Healthcare.");
+      out("");
+      out("  activities: Society of Hispanic Professional Engineers (E-Board),");
+      out("    Cybersecurity Club, capstone with Endless Moments LLC.");
+    },
+
+    edu: function () { COMMANDS.education(); },
+
+    skills: function () {
+      out("skills:");
+      out("");
+      out("  security    Wireshark, Nmap, ELK Stack, honeypots, firewalls,");
+      out("              threat detection, Zero-Trust architecture, network monitoring");
+      out("  cloud/sys   Azure, Azure AD, Microsoft 365, Windows Server, Linux");
+      out("  languages   Python, PowerShell, C++, Java, JavaScript, Solidity");
+      out("  tools       Docker, Git, FastAPI, PostgreSQL, OpenZeppelin, Next.js, React");
+      out("  core        cybersecurity analysis, incident triage, automation");
+      out("              scripting, endpoint hardening, agile development");
     },
 
     contact: function () {
-      out("github   github.com/" + GH_USER);
-      outHTML('<div class="line">profile  <a href="https://github.com/' +
-              GH_USER + '" target="_blank" rel="noopener noreferrer">open in a new tab</a></div>');
+      out("contact:");
+      out("");
+      out("  location   Phoenix, AZ");
+      out("  email      neftaligarcialopez29@gmail.com");
+      out("  phone      (602) 733-8776");
+      outHTML('<div class="line">  github     <a href="https://github.com/' +
+              GH_USER + '" target="_blank" rel="noopener noreferrer">github.com/' +
+              GH_USER + '</a></div>');
+      outHTML('<div class="line">  linkedin   <a href="https://linkedin.com/in/neftalig2914" ' +
+              'target="_blank" rel="noopener noreferrer">linkedin.com/in/neftalig2914</a></div>');
+    },
+
+    linkedin: function () {
+      out("opening linkedin.com/in/neftalig2914 ...", "dim");
+      window.open("https://linkedin.com/in/neftalig2914", "_blank", "noopener,noreferrer");
     },
 
     github: function () {
@@ -246,24 +334,25 @@
     out("");
   }
 
-  function loadReadme(repo) {
-    if (cache.readmes[repo]) { renderReadme(cache.readmes[repo]); return; }
+  function loadReadme(owner, repo) {
+    var key = owner + "/" + repo;
+    if (cache.readmes[key]) { renderReadme(cache.readmes[key]); return; }
     // raw.githubusercontent gives me the plain markdown directly. I try main
     // then master since I'm not always consistent about default branch names.
-    tryReadme(repo, "main")
-      .catch(function () { return tryReadme(repo, "master"); })
+    tryReadme(owner, repo, "main")
+      .catch(function () { return tryReadme(owner, repo, "master"); })
       .then(function (md) {
-        cache.readmes[repo] = md;
+        cache.readmes[key] = md;
         renderReadme(md);
       })
       .catch(function () {
-        out("no README found for " + repo + " yet.", "err");
-        out("(once I push the repo public, it'll show up here automatically)", "dim");
+        out("no README found for " + key + " yet.", "err");
+        out("(add a README.md to that repo and it'll show up here automatically)", "dim");
       });
   }
 
-  function tryReadme(repo, branch) {
-    var url = "https://raw.githubusercontent.com/" + GH_USER + "/" + repo +
+  function tryReadme(owner, repo, branch) {
+    var url = "https://raw.githubusercontent.com/" + owner + "/" + repo +
               "/" + branch + "/README.md";
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error("not on " + branch);

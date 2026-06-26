@@ -207,9 +207,11 @@
     cybersecurity. Find my work at github.com/neffyG.</p>
   </noscript>
 
-  <!-- vendored locally, no CDN. order matters: purify before app. -->
+  <!-- vendored locally, no CDN. order matters: purify before app.
+       the ?v= on app.js is a cache-buster: bump the number whenever you change
+       app.js so the browser and Cloudflare can't keep serving an old copy. -->
   <script src="vendor/purify.min.js"></script>
   <script src="vendor/marked.min.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
