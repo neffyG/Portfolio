@@ -37,35 +37,25 @@
   /* projects I want featured up front, mapped to their repo names on GitHub.
      The terminal can `open` any of these and it'll pull the live README. */
   var PROJECTS = {
-    vulnscan: {
-      repo: "VulnScan-Pro",
-      title: "VulnScan Pro",
-      date: "Jun 2025",
-      blurb: "Automated vulnerability scanner. Wraps nmap, matches service " +
-             "versions against the NVD CVE feed, generates HTML reports. Dockerized."
+    homelab: {
+      repo: "Home-Network-Security-Lab",
+      title: "Home Network & Security Lab",
+      date: "ongoing",
+      blurb: "pfSense CE firewall on VMware Workstation Pro. WAN bridged to the " +
+             "physical network, LAN isolated on 10.10.10.0/24 with its own DHCP " +
+             "scope. Hand-written firewall and NAT rules between segments. Remote " +
+             "admin over a Tailscale mesh with key-based SSH, nothing exposed to " +
+             "the internet."
     },
-    cybershield: {
-      repo: "CyberShield-Firewall",
-      title: "CyberShield Firewall",
-      date: "Feb 2025",
-      blurb: "Stateful packet filter on Linux NFQUEUE. Connection tracking, a " +
-             "token-bucket rate limiter for floods, SQLite logging, Flask dashboard."
-    },
-    honeywatch: {
-      repo: "HoneyWatch",
-      title: "Honey Watch Intrusion Lab",
-      date: "Dec 2024",
-      blurb: "Cowrie + Dionaea honeypots feeding an ELK stack. Captures real " +
-             "attacks, geolocates sources, summarizes payloads from the raw logs."
-    },
-    edccoin: {
+    endlessmoments: {
       owner: "jaimani11",
       repo: "Endless-Moments-LLC---An-AI-Powered-Universal-Loyalty-Rewards-Altcoin",
-      title: "EverydayCoin (EDC)",
-      date: "May 2026",
-      blurb: "AI-powered blockchain rewards platform. Solidity smart contracts, " +
-             "FastAPI, React, with ML fraud detection and OCR receipt validation, " +
-             "deployed on the Polygon testnet. My senior capstone (team repo)."
+      title: "Endless Moments // Loyalty & Rewards Platform",
+      date: "Aug 2025 - present",
+      blurb: "My ASU senior capstone. Full-stack rewards platform on FastAPI, " +
+             "React, and PostgreSQL, built in Agile sprints with Git code review. " +
+             "I wrote the anomaly detection that flags irregular redemption " +
+             "patterns using scikit-learn IsolationForest. Team repo."
     }
   };
 
@@ -101,7 +91,7 @@
     ].join("\n");
     out(art, "banner");
     out("neftali garcia lopez // computer science @ arizona state", "dim");
-    out("software engineering track, headed for an MS in cybersecurity", "dim");
+    out("software engineering grad, now starting an MS in cybersecurity", "dim");
     out("");
     out("type `help` to see what this terminal can do.");
     out("");
@@ -114,10 +104,10 @@
       out("  about           who I am");
       out("  projects        list my projects");
       out("  open <name>     open a project (loads its live README from GitHub)");
-      out("                  names: vulnscan, cybershield, honeywatch, edccoin");
+      out("                  names: homelab, endlessmoments");
       out("  experience      my work history");
-      out("  education       degrees, coursework, awards");
-      out("  skills          languages, security, cloud, tools");
+      out("  education       degrees, coursework, certifications");
+      out("  skills          networking, cloud, systems, languages");
       out("  repos           list my public GitHub repositories (live)");
       out("  resume          one-screen resume summary");
       out("  contact         how to reach me");
@@ -129,15 +119,18 @@
     },
 
     about: function () {
-      out("I'm Neftali Garcia Lopez, a computer science student at Arizona State");
-      out("on the software engineering track, and I'm planning to do an MS in");
-      out("cybersecurity after I graduate.");
+      out("I'm Neftali Garcia Lopez. Computer science out of Arizona State,");
+      out("software engineering track, now starting an MS in cybersecurity there.");
       out("");
-      out("I build security tools because I learn a topic best by making a small");
-      out("version of it myself. A scanner, a firewall, a honeypot lab. Every");
-      out("project in here is something I actually built and broke and fixed, and");
-      out("the READMEs are honest about the parts that went wrong, because that's");
-      out("where the learning was. Use `open <name>` to read them.");
+      out("Day to day I do IT and Microsoft cloud administration in healthcare:");
+      out("Azure and M365 for 150+ users, PowerShell automation, endpoint policy.");
+      out("At home I'm building a virtualized network and security lab on pfSense");
+      out("so I stop learning firewalls from diagrams and start learning them from");
+      out("rules I got wrong. Studying for Network+ and Security+.");
+      out("");
+      out("Every project in here is something I actually built and broke and fixed,");
+      out("and the READMEs are honest about the parts that went wrong, because");
+      out("that's where the learning was. Use `open <name>` to read them.");
     },
 
     projects: function () {
@@ -181,9 +174,10 @@
       out("B.S. Computer Science (Software Engineering), Arizona State, May 2026");
       out("  then M.S. Cybersecurity, Arizona State, starting Aug 2026.");
       out("");
-      out("I work in IT and security day to day and build security tools on the");
-      out("side to learn the internals. Focus areas: network and application");
-      out("security, threat detection, endpoint hardening, automation.");
+      out("Computer science graduate with hands-on IT support and Microsoft cloud");
+      out("administration experience in healthcare. Building a self-hosted network");
+      out("and security lab on pfSense, VMware, and Linux while preparing for");
+      out("CompTIA Network+ and Security+.");
       out("");
       out("Dig deeper with: `experience`, `education`, `skills`, `projects`.");
       out("Reach me with `contact`.");
@@ -192,28 +186,29 @@
     experience: function () {
       out("work experience:");
       out("");
-      out("  Technical Assistant, Hospice of the Valley        Jul 2024 - present");
+      out("  IT Intern, Mission Healthcare                     Mar 2025 - present");
       out("    Phoenix, AZ");
-      out("    - Troubleshoot software and device issues for clinical staff and");
-      out("      keep systems up.");
-      out("    - Support endpoint security updates and HIPAA-aligned tuning");
-      out("      across the network.");
+      out("    - Administer Azure and M365 for 150+ users: account provisioning,");
+      out("      license assignment, group-based access control.");
+      out("    - Write PowerShell that automates routine diagnostics and patch");
+      out("      deployment, cutting manual ticket handling time.");
+      out("    - Configure endpoint security and device compliance policies across");
+      out("      Windows and macOS, and troubleshoot connectivity and application");
+      out("      issues escalated by clinical staff.");
       out("");
-      out("  IT Intern, Mission Healthcare                     Mar 2025 - Nov 2025");
+      out("  Technical Assistant, Hospice of the Valley        Jul 2024 - Jan 2025");
       out("    Phoenix, AZ");
-      out("    - Managed Azure and M365 for 150+ users, enforcing access");
-      out("      control and policy compliance.");
-      out("    - Automated diagnostics and patch management in PowerShell, cut");
-      out("      downtime by about 20%.");
-      out("    - Ran network security and performance analysis with Cisco Meraki");
-      out("      and Wireshark.");
-      out("    - Hardened endpoints along Zero-Trust lines across multiple OSes.");
+      out("    - Resolved software, hardware, and peripheral issues for clinical");
+      out("      staff, triaging tickets to limit disruption to patient care.");
+      out("    - Deployed endpoint updates and security patches under HIPAA-aligned");
+      out("      handling requirements, and documented fixes for repeat issues.");
       out("");
       out("  Instructional Aide, Arizona State University      Aug 2023 - May 2024");
       out("    Tempe, AZ");
-      out("    - Guided 80+ students through C++ and Python labs: debugging,");
-      out("      algorithms, secure coding.");
-      out("    - Built grading automation scripts for the teaching staff.");
+      out("    - Supported 80+ students across C++ and Python lab sections,");
+      out("      coaching debugging and algorithm design.");
+      out("    - Assisted faculty with course delivery and built scripts to");
+      out("      streamline grading workflows.");
     },
 
     work: function () { COMMANDS.experience(); },
@@ -227,9 +222,14 @@
       out("  coursework: Computer Network Security, Operating Systems, Data");
       out("    Structures & Algorithms, Software QA & Testing, OO Analysis & Design.");
       out("");
+      out("  certifications:");
+      out("    Microsoft Azure Fundamentals (AZ-900)");
+      out("    Cisco Networking Academy: Introduction to Cybersecurity");
+      out("    CompTIA Network+   in progress, 2026", "dim");
+      out("    CompTIA Security+  planned", "dim");
+      out("");
       out("  awards: Dean's List (multiple semesters), SHPE National Convention");
-      out("    Delegate, Evidence-Based Pitch Deck Finalist, Technical Assistant");
-      out("    Scholar at Mission Healthcare.");
+      out("    Delegate.");
       out("");
       out("  activities: Society of Hispanic Professional Engineers (E-Board),");
       out("    Cybersecurity Club, capstone with Endless Moments LLC.");
@@ -240,20 +240,21 @@
     skills: function () {
       out("skills:");
       out("");
-      out("  security    Wireshark, Nmap, ELK Stack, honeypots, firewalls,");
-      out("              threat detection, Zero-Trust architecture, network monitoring");
-      out("  cloud/sys   Azure, Azure AD, Microsoft 365, Windows Server, Linux");
-      out("  languages   Python, PowerShell, C++, Java, JavaScript, Solidity");
-      out("  tools       Docker, Git, FastAPI, PostgreSQL, OpenZeppelin, Next.js, React");
-      out("  core        cybersecurity analysis, incident triage, automation");
-      out("              scripting, endpoint hardening, agile development");
+      out("  networking  TCP/IP, subnetting, DHCP, DNS, NAT, firewall rule");
+      out("              configuration, pfSense, VLAN segmentation, Wireshark");
+      out("  cloud/id    Azure, Microsoft Entra ID (Azure AD), Microsoft 365");
+      out("              administration, conditional access, endpoint policy");
+      out("  systems     Windows 10/11, Windows Server, Ubuntu Server, VMware");
+      out("              Workstation Pro, OpenSSH, Tailscale");
+      out("  languages   Python, PowerShell, C++, Java, JavaScript, Bash");
+      out("  tools       Git, PostgreSQL, FastAPI, React, Nmap");
     },
 
     contact: function () {
       out("contact:");
       out("");
       out("  location   Phoenix, AZ");
-      out("  email      neftaligarcialopez29@gmail.com");
+      out("  email      neftaligarcialopez2914@gmail.com");
       out("  phone      (602) 733-8776");
       outHTML('<div class="line">  github     <a href="https://github.com/' +
               GH_USER + '" target="_blank" rel="noopener noreferrer">github.com/' +
